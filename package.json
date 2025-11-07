@@ -1,0 +1,17 @@
+{
+  "name": "campaign-cart-example",
+  "version": "1.0.0",
+  "description": "Example Campaign using Campaign Cart SDK",
+  "scripts": {
+    "serve": "npx http-server . -p 8000 -o landing.html",
+    "start": "npx http-server . -p 8000 -o landing.html"
+  },
+  "keywords": [
+    "next-commerce",
+    "campaign",
+    "checkout"
+  ],
+  "author": "29 Next",
+  "license": "MIT"
+}
+
