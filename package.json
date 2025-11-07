@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "Example Campaign using Campaign Cart SDK",
   "scripts": {
-    "serve": "npx http-server . -p 8000 -o landing.html",
-    "start": "npx http-server . -p 8000 -o landing.html"
+    "serve": "npx http-server . -p 8000 -a localhost -o landing.html",
+    "start": "npx http-server . -p 8000 -a localhost -o landing.html"
   },
   "keywords": [
     "next-commerce",

@@ -9,17 +9,19 @@ To view these pages, you'll need to run a local web server. Here are three simpl
 
 #### Option 1: Using Python (Recommended - No installation needed)
 
-If you have Python installed, simply run:
+If you have Python 3 installed, simply run:
 
 ```bash
-# Python 3
-python3 -m http.server 8000
-
-# Or Python 2
-python -m SimpleHTTPServer 8000
+python3 serve.py
 ```
 
-Then open [http://localhost:8000/landing.html](http://localhost:8000/landing.html) in your browser.
+This will automatically start a server on `http://localhost:8000` and open the landing page in your browser.
+
+Alternatively, you can use Python's built-in server (requires manually opening the browser):
+
+```bash
+python3 -m http.server 8000 --bind localhost
+```
 
 #### Option 2: Using Node.js
 
@@ -34,7 +36,7 @@ This will automatically start a server and open the landing page in your browser
 Or run directly:
 
 ```bash
-npx http-server . -p 8000 -o landing.html
+npx http-server . -p 8000 -a localhost -o landing.html
 ```
 
 #### Option 3: Using VS Code Live Server Extension
