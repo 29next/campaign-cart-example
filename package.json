@@ -4,9 +4,8 @@
   "description": "Example Campaign using Campaign Cart SDK",
   "scripts": {
     "serve": "npx @11ty/eleventy --serve",
-    "copy": "node copy.js",
-    "start": "node start.js"
-    
+    "copy": "node lib/copy.js",
+    "start": "node lib/start.js"
   },
   "keywords": [
     "next-commerce",
@@ -27,6 +26,7 @@
   "homepage": "https://github.com/29next/campaign-cart-example#readme",
   "dependencies": {
     "@11ty/eleventy": "^3.1.2",
+    "chalk": "^4.1.2",
     "prompts": "^2.4.2"
   }
 }
