@@ -1,0 +1,10 @@
+[
+  {
+    "path": "starter",
+    "start_page": "landing"
+  },
+  {
+    "path": "test-new",
+    "start_page": "landing"
+  }
+]
