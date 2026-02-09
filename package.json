@@ -4,9 +4,9 @@
   "description": "Example Campaign using Campaign Cart SDK",
   "scripts": {
     "dev": "node lib/dev.js",
-    "copy": "node lib/copy-campaign.js",
+    "clone": "node lib/clone-campaign.js",
     "config": "node lib/configure-campaign.js",
-    "start": "npx eleventy --serve",
+    "start": "node lib/dev.js",
     "build": "npx eleventy"
   },
   "keywords": [

@@ -15,13 +15,13 @@ npm install
 Start the development server with interactive campaign selection:
 
 ```bash
-npm run dev
+npm run start
 ```
 
 This will:
 1. Show a list of available campaigns
 2. Let you select which campaign to preview
-3. Start the Eleventy dev server on port 8082
+3. Start the Eleventy start server on port 8082
 4. Open your browser to the selected campaign
 
 ### Build
@@ -48,12 +48,12 @@ This interactive tool will:
 3. Prompt for API key
 4. Update the campaign's `config.js` file
 
-### Copy Campaign
+### Clone Campaign
 
 Clone an existing campaign to create a new one:
 
 ```bash
-npm run copy
+npm run clone
 ```
 
 ## Campaign File Structure
@@ -84,7 +84,7 @@ campaign-cart-example/
 │       └── receipt.html        # Receipt/thank you page
 ├── lib/
 │   ├── dev.js                  # Development server launcher
-│   ├── copy-campaign.js        # Campaign cloning tool
+│   ├── clone-campaign.js       # Campaign cloning tool
 │   └── configure-campaign.js   # API key configuration tool
 ├── .eleventy.js                # Eleventy config with custom filters
 └── package.json

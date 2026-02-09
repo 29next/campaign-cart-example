@@ -62,7 +62,7 @@ npm run build
 
 ### Campaign Management
 ```bash
-npm run copy          # Clone a campaign
+npm run clone         # Clone a campaign
 npm run config        # Configure API key
 ```
 
@@ -191,7 +191,7 @@ Base layout must include:
 4. Test with `npm run dev`
 
 ### Cloning a Campaign
-1. Run `npm run copy`
+1. Run `npm run clone`
 2. Select source campaign
 3. Enter new campaign name and slug
 4. Configure API key: `npm run config`
