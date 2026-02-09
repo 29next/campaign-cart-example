@@ -82,7 +82,7 @@ campaign-cart-example/
 │       ├── checkout.html       # Checkout page
 │       ├── upsell.html         # Upsell page
 │       └── receipt.html        # Receipt/thank you page
-├── scripts/
+├── lib/
 │   ├── dev.js                  # Development server launcher
 │   ├── copy-campaign.js        # Campaign cloning tool
 │   └── configure-campaign.js   # API key configuration tool

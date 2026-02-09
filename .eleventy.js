@@ -2,6 +2,9 @@ const campaigns = require('./_data/campaigns.json');
 
 module.exports = function (eleventyConfig) {
 
+    // Ignore README.md from being processed/copied
+    eleventyConfig.ignores.add("README.md");
+
     // Dynamically add passthrough copy for each campaign's assets
     campaigns.campaigns.forEach(campaign => {
         eleventyConfig.addPassthroughCopy(`src/${campaign.slug}/css`);
