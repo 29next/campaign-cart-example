@@ -83,10 +83,12 @@ campaign-cart-example/
 │       ├── upsell.html         # Upsell page
 │       └── receipt.html        # Receipt/thank you page
 ├── lib/
+│   ├── eleventy-plugin.js      # Eleventy plugin (filters, collections)
+│   ├── config.js               # Shared configuration utilities
 │   ├── dev.js                  # Development server launcher
 │   ├── clone-campaign.js       # Campaign cloning tool
 │   └── configure-campaign.js   # API key configuration tool
-├── .eleventy.js                # Eleventy config with custom filters
+├── .eleventy.js                # Eleventy config (uses plugin)
 └── package.json
 ```
 
@@ -96,6 +98,8 @@ campaign-cart-example/
 - **`src/src.11tydata.js`** - Automatically resolves campaign-specific layouts
 - **`src/[campaign]/_layouts/base.html`** - Campaign's base layout
 - **`src/[campaign]/config.js`** - Campaign Cart SDK configuration
+- **`lib/eleventy-plugin.js`** - Eleventy plugin with filters and collections
+- **`lib/config.js`** - Shared configuration and path utilities
 
 ## Page Frontmatter
 

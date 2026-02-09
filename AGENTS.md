@@ -31,6 +31,26 @@ campaign-cart-example/
 └── _site/                     # Build output (ignored)
 ```
 
+## Plugin Architecture
+
+The campaign builder uses a modular plugin architecture:
+
+**`lib/eleventy-plugin.js`** - Main Eleventy plugin
+- Registers `campaign_asset` and `campaign_link` filters
+- Sets up passthrough copy for campaign assets
+- Creates collections for each campaign
+
+**`lib/config.js`** - Shared configuration module
+- Path resolution utilities (`getCampaignsPath`, `getSrcPath`, `getOutputPath`)
+- Campaign data loaders (`loadCampaigns`, `saveCampaigns`)
+- Used by all CLI tools for consistent path handling
+
+**`.eleventy.js`** - Minimal configuration
+```javascript
+const campaignBuilderPlugin = require('./lib/eleventy-plugin');
+eleventyConfig.addPlugin(campaignBuilderPlugin);
+```
+
 ## Agent Role
 
 You are a web development assistant specialized in:
@@ -206,8 +226,10 @@ Base layout must include:
 
 - Campaign registry: `_data/campaigns.json`
 - Eleventy config: `.eleventy.js`
+- Eleventy plugin: `lib/eleventy-plugin.js`
+- Shared config utilities: `lib/config.js`
 - Layout resolver: `src/src.11tydata.js`
-- Build scripts: `lib/`
+- Build scripts: `lib/dev.js`, `lib/clone-campaign.js`, `lib/configure-campaign.js`
 - Campaign files: `src/{campaign-slug}/`
 
 ## Error Handling

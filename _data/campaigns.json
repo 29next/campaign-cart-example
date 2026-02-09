@@ -3,7 +3,8 @@
     {
       "name": "Starter",
       "slug": "starter",
-      "description": "Original starter funnel"
+      "description": "Original starter funnel",
+      "sdk_version": "0.3.7"
     }
   ]
 }

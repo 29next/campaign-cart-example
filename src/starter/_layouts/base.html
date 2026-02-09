@@ -3,9 +3,9 @@
 
 <head>
   <meta charset="utf-8">
-  <title>{{ title | default: "Campaign" }}</title>
-  <meta content="{{ title | default: 'Campaign' }}" property="og:title">
-  <meta content="{{ title | default: 'Campaign' }}" property="twitter:title">
+  <title>{{ title | default: campaign.name }}</title>
+  <meta content="{{ title | default: campaign.name }}" property="og:title">
+  <meta content="{{ title | default: campaign.name }}" property="twitter:title">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <link rel="dns-prefetch" href="https://campaigns.apps.29next.com">
   <link rel="dns-prefetch" href="https://cdn-countries.muddy-wind-c7ca.workers.dev">
@@ -14,7 +14,9 @@
   <!-- Campaign Configuration -->
   <script src="{{ 'config.js' | campaign_asset }}"></script>
   <!-- Campaign Loader Script -->
-  <script src="https://cdn.jsdelivr.net/gh/NextCommerceCo/campaign-cart@v0.3.7/dist/loader.js" type="module"></script>
+  <script
+    src="https://cdn.jsdelivr.net/gh/NextCommerceCo/campaign-cart@v{{ campaign.sdk_version | default:'0.3.7' }}/dist/loader.js"
+    type="module"></script>
 
   <!-- NEXT Metatags -->
   {% if next_page_type %}
