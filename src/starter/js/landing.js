@@ -24,7 +24,7 @@ function initiateSlider() {
         prevEl: buttonPrevEl,
       },
       on: {
-        slideChange: function() {
+        slideChange: function () {
           currentSlide = this.activeIndex;
           updateActiveStates(currentSlide);
         },

@@ -229,7 +229,7 @@ Base layout must include:
 - Eleventy plugin: `lib/eleventy-plugin.js`
 - Shared config utilities: `lib/config.js`
 - Layout resolver: `src/src.11tydata.js`
-- Build scripts: `lib/dev.js`, `lib/clone-campaign.js`, `lib/configure-campaign.js`
+- Build scripts: lib/dev-server.js, lib/clone-campaign.js, lib/configure-campaign.js
 - Campaign files: `src/{campaign-slug}/`
 
 ## Error Handling

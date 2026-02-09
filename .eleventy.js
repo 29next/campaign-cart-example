@@ -1,4 +1,4 @@
-const campaignBuilderPlugin = require('./lib/eleventy-plugin');
+const campaignPlugin = require('./lib/campaign-plugin');
 
 module.exports = function (eleventyConfig) {
 
@@ -6,7 +6,7 @@ module.exports = function (eleventyConfig) {
     eleventyConfig.ignores.add("README.md");
 
     // Add campaign builder plugin
-    eleventyConfig.addPlugin(campaignBuilderPlugin);
+    eleventyConfig.addPlugin(campaignPlugin);
 
     return {
         dir: {

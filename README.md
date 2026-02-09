@@ -61,22 +61,21 @@ npm run clone
 ```
 campaign-cart-example/
 ├── _data/
-│   └── campaigns.json          # Campaign registry (list of all campaigns)
+│   └── campaigns.json          # Campaign registry (contains data for all campaigns)
 ├── src/
-│   ├── src.11tydata.js         # Auto-resolves layouts for all campaigns
 │   └── [campaign-slug]/        # Individual campaign directory
 │       ├── _layouts/           # Campaign-specific layouts
 │       │   └── base.html       # Base layout template
 │       ├── css/                # Campaign styles
-│       │   ├── custom.css
-│       │   ├── next-staging-core.css
-│       │   └── funnels-*.css   # Page-specific styles
+│       │   ├── next-core.css   # Core styles
+│       │   ├── custom.css      # Custom styles
+│       │   └── *.css           # Page-specific styles
 │       ├── images/             # Campaign images
 │       │   ├── favicon.png
 │       │   ├── webclip.png
 │       │   └── ...
 │       ├── js/                 # Campaign scripts
-│       │   └── funnels-*.js    # Page-specific scripts
+│       │   └── *.js            # Page-specific scripts
 │       ├── config.js           # Campaign configuration (API key, etc.)
 │       ├── landing.html        # Landing page
 │       ├── checkout.html       # Checkout page
@@ -85,17 +84,16 @@ campaign-cart-example/
 ├── lib/
 │   ├── eleventy-plugin.js      # Eleventy plugin (filters, collections)
 │   ├── config.js               # Shared configuration utilities
-│   ├── dev.js                  # Development server launcher
-│   ├── clone-campaign.js       # Campaign cloning tool
+│   ├── dev-server.js           # Build scripts: lib/dev-server.js, lib/clone-campaign.js, lib/configure-campaign.js
+│   ├── clone-campaign.js
 │   └── configure-campaign.js   # API key configuration tool
-├── .eleventy.js                # Eleventy config (uses plugin)
+├── .eleventy.js                # Eleventy config (with campaign plugin)
 └── package.json
 ```
 
 ### Key Files
 
-- **`_data/campaigns.json`** - Register all campaigns here
-- **`src/src.11tydata.js`** - Automatically resolves campaign-specific layouts
+- **`_data/campaigns.json`** - Register all campaigns and their configuration data here
 - **`src/[campaign]/_layouts/base.html`** - Campaign's base layout
 - **`src/[campaign]/config.js`** - Campaign Cart SDK configuration
 - **`lib/eleventy-plugin.js`** - Eleventy plugin with filters and collections
@@ -137,6 +135,42 @@ footer: true
 | `scripts` | array | No | Page-specific JS files (relative paths) |
 | `use_swiper` | boolean | No | Include Swiper library for image galleries |
 | `footer` | boolean | No | Show footer on this page |
+
+## Campaign Context (`campaign`)
+
+Each page automatically has access to its campaign's data from `_data/campaigns.json` via the `campaign` object. This allows you to provide configured context directly to your pages.
+
+### Usage
+
+You can access any key defined in your campaign's entry in `_data/campaigns.json`:
+
+```liquid
+<h1>{{ campaign.name }}</h1>
+<p>Contact: {{ campaign.support_email }}</p>
+```
+
+### Adding Custom Context
+
+To add more context, simply add new keys to your campaign in `_data/campaigns.json`:
+
+```json
+{
+  "campaigns": [
+    {
+      "slug": "starter",
+      "name": "Starter Campaign",
+      "support_email": "support@example.com",
+      "custom_headline": "Welcome to our Store!"
+    }
+  ]
+}
+```
+
+Then use it in your templates:
+
+```liquid
+<h2>{{ campaign.custom_headline }}</h2>
+```
 
 ### Layout Resolution
 
