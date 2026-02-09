@@ -18,7 +18,6 @@ This is a campaign cart example project built with **Eleventy (11ty)** static si
 campaign-cart-example/
 ├── _data/campaigns.json       # Campaign registry
 ├── src/
-│   ├── src.11tydata.js        # Auto-resolves layouts
 │   └── [campaign-slug]/       # Individual campaigns
 │       ├── _layouts/          # Campaign layouts
 │       ├── css/               # Styles
@@ -35,7 +34,7 @@ campaign-cart-example/
 
 The campaign builder uses a modular plugin architecture:
 
-**`lib/eleventy-plugin.js`** - Main Eleventy plugin
+**`lib/campaign-plugin.js`** - Main Eleventy plugin
 - Registers `campaign_asset` and `campaign_link` filters
 - Sets up passthrough copy for campaign assets
 - Creates collections for each campaign
@@ -47,7 +46,7 @@ The campaign builder uses a modular plugin architecture:
 
 **`.eleventy.js`** - Minimal configuration
 ```javascript
-const campaignBuilderPlugin = require('./lib/eleventy-plugin');
+const campaignBuilderPlugin = require('./lib/campaign-plugin');
 eleventyConfig.addPlugin(campaignBuilderPlugin);
 ```
 
@@ -121,10 +120,11 @@ page_layout: base.html      # Optional, defaults to base.html
 title: Page Title
 page_type: checkout         # product|checkout|upsell|receipt
 styles:
+  - https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css
   - css/page-specific.css
 scripts:
+  - https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js
   - js/page-script.js
-use_swiper: true           # Optional, for image galleries
 footer: true               # Optional
 ---
 ```
@@ -132,7 +132,7 @@ footer: true               # Optional
 ### Layout Resolution
 
 - **DO NOT** hardcode campaign paths in layouts
-- Layouts are auto-resolved via `src/src.11tydata.js`
+- Layouts are auto-resolved via `lib/campaign-plugin.js`
 - Format: `page_layout: base.html` → resolves to `{campaign}/_layouts/base.html`
 
 ## Campaign SDK Integration
@@ -189,7 +189,7 @@ Base layout must include:
 
 ### Ask First
 - Changing Campaign Cart SDK version
-- Modifying `src/src.11tydata.js` (layout resolution logic)
+- Modifying `lib/campaign-plugin.js` (layout resolution logic)
 - Changing `.eleventy.js` configuration
 - Altering `config.js` structure significantly
 - Adding new npm dependencies
@@ -226,10 +226,10 @@ Base layout must include:
 
 - Campaign registry: `_data/campaigns.json`
 - Eleventy config: `.eleventy.js`
-- Eleventy plugin: `lib/eleventy-plugin.js`
+- Eleventy plugin: `lib/campaign-plugin.js`
 - Shared config utilities: `lib/config.js`
-- Layout resolver: `src/src.11tydata.js`
-- Build scripts: lib/dev-server.js, lib/clone-campaign.js, lib/configure-campaign.js
+- Layout resolver: `lib/campaign-plugin.js`
+- Build scripts: `lib/dev-server.js`, `lib/clone-campaign.js`, `lib/configure-campaign.js`
 - Campaign files: `src/{campaign-slug}/`
 
 ## Error Handling
@@ -238,7 +238,7 @@ Common errors and solutions:
 
 **"Layout does not exist"**
 - Check `page_layout:` in frontmatter matches file in `_layouts/`
-- Ensure `src/src.11tydata.js` exists
+- Ensure plugin is correctly loaded in `.eleventy.js`
 
 **"Cannot find module"**
 - Run `npm install`

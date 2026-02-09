@@ -1,6 +1,6 @@
-# Campaign Cart Example
+# Next Commerce Campaign Example
 
-Example campaign using the Campaign Cart SDK with customized 11ty static site generator.
+Example Next Commerce campaign using the Campaign Cart SDK with customized 11ty static site generator.
 
 ## Setup
 
@@ -82,9 +82,9 @@ campaign-cart-example/
 │       ├── upsell.html         # Upsell page
 │       └── receipt.html        # Receipt/thank you page
 ├── lib/
-│   ├── eleventy-plugin.js      # Eleventy plugin (filters, collections)
+│   ├── campaign-plugin.js      # Eleventy plugin (filters)
 │   ├── config.js               # Shared configuration utilities
-│   ├── dev-server.js           # Build scripts: lib/dev-server.js, lib/clone-campaign.js, lib/configure-campaign.js
+│   ├── dev-server.js           # Development server launcher
 │   ├── clone-campaign.js
 │   └── configure-campaign.js   # API key configuration tool
 ├── .eleventy.js                # Eleventy config (with campaign plugin)
@@ -96,7 +96,7 @@ campaign-cart-example/
 - **`_data/campaigns.json`** - Register all campaigns and their configuration data here
 - **`src/[campaign]/_layouts/base.html`** - Campaign's base layout
 - **`src/[campaign]/config.js`** - Campaign Cart SDK configuration
-- **`lib/eleventy-plugin.js`** - Eleventy plugin with filters and collections
+- **`lib/campaign-plugin.js`** - Campaign plugin with filters
 - **`lib/config.js`** - Shared configuration and path utilities
 
 ## Page Frontmatter
@@ -112,10 +112,11 @@ title: Checkout
 page_type: checkout
 next_success_url: upsell.html
 styles:
-  - css/funnels-funnel-1-checkout.css
+  - https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css
+  - css/landing.css
 scripts:
-  - js/custom-script.js
-use_swiper: true
+  - https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js
+  - js/landing.js
 footer: true
 ---
 ```
@@ -131,9 +132,8 @@ footer: true
 | `next_success_url` | string | No | Redirect URL after successful checkout |
 | `next_upsell_accept` | string | No | URL when upsell accepted |
 | `next_upsell_decline` | string | No | URL when upsell declined |
-| `styles` | array | No | Page-specific CSS files (relative paths) |
-| `scripts` | array | No | Page-specific JS files (relative paths) |
-| `use_swiper` | boolean | No | Include Swiper library for image galleries |
+| `styles` | array | No | Page-specific CSS files (relative paths or external URLs) |
+| `scripts` | array | No | Page-specific JS files (relative paths or external URLs) |
 | `footer` | boolean | No | Show footer on this page |
 
 ## Campaign Context (`campaign`)
