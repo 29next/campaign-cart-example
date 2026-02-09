@@ -1,60 +1,223 @@
-# campaign-cart-example
-Example Campaign using Campaign Cart SDK
+# Campaign Cart Example
 
-## Getting Started
+Example campaign using the Campaign Cart SDK with customized 11ty static site generator.
 
-### Running a Local Server
+## Setup
 
-To view these pages, you'll need to run a local web server. Here are three simple options:
-
-#### Option 1: Using Python (Recommended - No installation needed)
-
-If you have Python 3 installed, simply run:
+### Installation
 
 ```bash
-python3 serve.py
+npm install
 ```
 
-This will automatically start a server on `http://localhost:8000` and open the landing page in your browser.
+### Development
 
-Alternatively, you can use Python's built-in server (requires manually opening the browser):
+Start the development server with interactive campaign selection:
 
 ```bash
-python3 -m http.server 8000 --bind localhost
+npm run dev
 ```
 
-#### Option 2: Using Node.js
+This will:
+1. Show a list of available campaigns
+2. Let you select which campaign to preview
+3. Start the Eleventy dev server on port 8082
+4. Open your browser to the selected campaign
 
-If you have Node.js installed, you can use the included serve script:
+### Build
+
+Build the static site for production:
 
 ```bash
-npm start
+npm run build
 ```
 
-This will automatically start a server and open the landing page in your browser.
+Output will be in the `_site` directory.
 
-Or run directly:
+### Configuration
+
+Configure a campaign's API key:
 
 ```bash
-npx http-server . -p 8000 -a localhost -o landing.html
+npm run config
 ```
 
-#### Option 3: Using VS Code Live Server Extension
+This interactive tool will:
+1. Show available campaigns
+2. Prompt for campaign selection
+3. Prompt for API key
+4. Update the campaign's `config.js` file
 
-If you're using VS Code, you can use the Live Server extension (requires installation if not already installed):
+### Copy Campaign
 
-1. Install the [Live Server extension](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) from the VS Code marketplace
-2. Right-click on `landing.html` in the file explorer
-3. Select "Open with Live Server"
+Clone an existing campaign to create a new one:
 
-The page will automatically open in your browser and reload when you make changes.
+```bash
+npm run copy
+```
 
-## Connecting to Your Campaign in Campaigns App
+## Campaign File Structure
 
-You can connect this example campaign to your campaign in the Campaigns App. Make sure to update the example API key with your campaign API key from the Campaigns App.
+```
+campaign-cart-example/
+├── _data/
+│   └── campaigns.json          # Campaign registry (list of all campaigns)
+├── src/
+│   ├── src.11tydata.js         # Auto-resolves layouts for all campaigns
+│   └── [campaign-slug]/        # Individual campaign directory
+│       ├── _layouts/           # Campaign-specific layouts
+│       │   └── base.html       # Base layout template
+│       ├── css/                # Campaign styles
+│       │   ├── custom.css
+│       │   ├── next-staging-core.css
+│       │   └── funnels-*.css   # Page-specific styles
+│       ├── images/             # Campaign images
+│       │   ├── favicon.png
+│       │   ├── webclip.png
+│       │   └── ...
+│       ├── js/                 # Campaign scripts
+│       │   └── funnels-*.js    # Page-specific scripts
+│       ├── config.js           # Campaign configuration (API key, etc.)
+│       ├── landing.html        # Landing page
+│       ├── checkout.html       # Checkout page
+│       ├── upsell.html         # Upsell page
+│       └── receipt.html        # Receipt/thank you page
+├── scripts/
+│   ├── dev.js                  # Development server launcher
+│   ├── copy-campaign.js        # Campaign cloning tool
+│   └── configure-campaign.js   # API key configuration tool
+├── .eleventy.js                # Eleventy config with custom filters
+└── package.json
+```
+
+### Key Files
+
+- **`_data/campaigns.json`** - Register all campaigns here
+- **`src/src.11tydata.js`** - Automatically resolves campaign-specific layouts
+- **`src/[campaign]/_layouts/base.html`** - Campaign's base layout
+- **`src/[campaign]/config.js`** - Campaign Cart SDK configuration
+
+## Page Frontmatter
+
+Each campaign page uses YAML frontmatter to configure the page.
+
+### Example
+
+```yaml
+---
+page_layout: base.html
+title: Checkout
+page_type: checkout
+next_success_url: upsell.html
+styles:
+  - css/funnels-funnel-1-checkout.css
+scripts:
+  - js/custom-script.js
+use_swiper: true
+footer: true
+---
+```
+
+### Frontmatter Fields
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `page_layout` | string | No | Layout file in `_layouts/`. Defaults to `base.html` |
+| `title` | string | Yes | Page title for `<title>` tag |
+| `page_type` | string | No | Page type: `product`, `checkout`, `upsell`, `receipt` |
+| `permalink` | string | No | Custom URL path (e.g., `/starter/`) |
+| `next_success_url` | string | No | Redirect URL after successful checkout |
+| `next_upsell_accept` | string | No | URL when upsell accepted |
+| `next_upsell_decline` | string | No | URL when upsell declined |
+| `styles` | array | No | Page-specific CSS files (relative paths) |
+| `scripts` | array | No | Page-specific JS files (relative paths) |
+| `use_swiper` | boolean | No | Include Swiper library for image galleries |
+| `footer` | boolean | No | Show footer on this page |
+
+### Layout Resolution
+
+Layouts are automatically resolved to the campaign's `_layouts/` directory:
+
+- `page_layout: base.html` → `starter/_layouts/base.html`
+- `page_layout: custom.html` → `starter/_layouts/custom.html`
+
+**No layout specified?** Defaults to `base.html`.
+
+## Template Tags (Filters)
+
+Campaign Cart Example provides custom Eleventy filters for campaign-agnostic paths.
+
+### `campaign_asset`
+
+Resolves asset paths to the current campaign.
+
+**Syntax:**
+```liquid
+{{ 'filename' | campaign_asset }}
+```
+
+**Examples:**
+```liquid
+<!-- Config -->
+<script src="{{ 'config.js' | campaign_asset }}"></script>
+<!-- Output: /starter/config.js -->
+
+<!-- CSS -->
+<link href="{{ 'css/custom.css' | campaign_asset }}" rel="stylesheet">
+<!-- Output: /starter/css/custom.css -->
+
+<!-- Images -->
+<img src="{{ 'images/logo.png' | campaign_asset }}" alt="Logo">
+<!-- Output: /starter/images/logo.png -->
+```
+
+**Use for:** CSS files, JavaScript files, images, config.js, any campaign asset.
+
+---
+
+### `campaign_link`
+
+Generates clean URLs for inter-page navigation.
+
+**Syntax:**
+```liquid
+{{ 'filename.html' | campaign_link }}
+```
+
+**Examples:**
+```liquid
+<!-- Navigation link -->
+<a href="{{ 'checkout.html' | campaign_link }}">Checkout</a>
+<!-- Output: /starter/checkout/ -->
+
+<!-- Campaign Cart meta tag -->
+<meta name="next-success-url" content="{{ next_success_url | campaign_link }}">
+<!-- Output: /starter/upsell/ -->
+
+<!-- Data attribute -->
+<button data-next-url="{{ 'upsell.html' | campaign_link }}">Continue</button>
+<!-- Output: /starter/upsell/ -->
+```
+
+**Features:**
+- Removes `.html` extension
+- Adds trailing slash
+- Prepends campaign slug
+- Handles anchor links (`#section`) and absolute URLs
+
+**Use for:** Page links, navigation URLs, redirect URLs, Campaign Cart SDK meta tags.
+
+## Connecting to Campaigns App
+
+To connect this campaign to your 29 Next Campaigns App:
+
+1. Run `npm run config`
+2. Select your campaign
+3. Enter your API key from the Campaigns App
+4. Deploy your campaign
 
 For more details, see the [Campaigns App documentation](https://docs.29next.com/apps/campaigns-app).
 
 ## Test Orders
 
-You can use our [test cards](https://docs.29next.com/manage/orders/test-orders) to create a card order
+You can use our [test cards](https://docs.29next.com/manage/orders/test-orders) to create test orders.

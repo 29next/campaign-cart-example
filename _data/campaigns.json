@@ -1,0 +1,9 @@
+{
+  "campaigns": [
+    {
+      "name": "Starter",
+      "slug": "starter",
+      "description": "Original starter funnel"
+    }
+  ]
+}
