@@ -2,8 +2,9 @@ const campaignPlugin = require('./lib/campaign-plugin');
 
 module.exports = function (eleventyConfig) {
 
-    // Ignore README.md from being processed/copied
+    // Ignore README.md and _layouts directories from being processed/copied
     eleventyConfig.ignores.add("README.md");
+    eleventyConfig.ignores.add("**/_layouts/**");
 
     // Add campaign builder plugin
     eleventyConfig.addPlugin(campaignPlugin);

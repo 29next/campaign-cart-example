@@ -1,6 +1,6 @@
 # Next Commerce Campaign Example
 
-Example Next Commerce campaign using the Campaign Cart SDK with customized 11ty static site generator.
+Next Commerce campaign using the Campaign Cart SDK with customized 11ty static site generator tailored for campaign flows.
 
 ## Setup
 
@@ -85,8 +85,8 @@ campaign-cart-example/
 │   ├── campaign-plugin.js      # Eleventy plugin (filters)
 │   ├── config.js               # Shared configuration utilities
 │   ├── dev-server.js           # Development server launcher
-│   ├── clone-campaign.js
-│   └── configure-campaign.js   # API key configuration tool
+│   ├── campaign-clone.js
+│   └── campaign-configure.js   # API key configuration tool
 ├── .eleventy.js                # Eleventy config (with campaign plugin)
 └── package.json
 ```

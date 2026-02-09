@@ -4,7 +4,7 @@ This file provides instructions for AI coding agents working on this campaign ca
 
 ## Project Overview
 
-This is a campaign cart example project built with **Eleventy (11ty)** static site generator. It provides a framework for creating e-commerce campaign funnels with multiple pages (landing, checkout, upsell, receipt) using the 29 Next Campaign Cart SDK.
+This is a campaign cart example project built with a customized **Eleventy (11ty)** static site generator. It provides a framework for creating e-commerce campaign funnels with multiple pages (landing, checkout, upsell, receipt) using the Next Commerce Campaign Cart SDK.
 
 **Key Technologies:**
 - Eleventy 3.x (static site generator)
@@ -27,7 +27,7 @@ campaign-cart-example/
 │       └── *.html             # Pages
 ├── lib/                       # Build scripts
 ├── .eleventy.js               # Eleventy config
-└── _site/                     # Build output (ignored)
+└── _site/                     # Build output (.gitignore)
 ```
 
 ## Plugin Architecture
@@ -229,7 +229,7 @@ Base layout must include:
 - Eleventy plugin: `lib/campaign-plugin.js`
 - Shared config utilities: `lib/config.js`
 - Layout resolver: `lib/campaign-plugin.js`
-- Build scripts: `lib/dev-server.js`, `lib/clone-campaign.js`, `lib/configure-campaign.js`
+- Build scripts: `lib/dev-server.js`, `lib/campaign-clone.js`, `lib/campaign-configure.js`
 - Campaign files: `src/{campaign-slug}/`
 
 ## Error Handling
