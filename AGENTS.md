@@ -20,10 +20,7 @@ campaign-cart-example/
 ├── src/
 │   └── [campaign-slug]/       # Individual campaigns
 │       ├── _layouts/          # Campaign layouts
-│       ├── css/               # Styles
-│       ├── images/            # Assets
-│       ├── js/                # Scripts
-│       ├── config.js          # SDK config
+│       ├── assets/            # Assets (css, images, js, config)
 │       └── *.html             # Pages
 ├── lib/                       # Build scripts
 ├── .eleventy.js               # Eleventy config
@@ -182,7 +179,7 @@ Base layout must include:
 
 ### Always Do
 - Use `campaign_asset` and `campaign_link` filters
-- Keep campaigns self-contained (all assets in campaign directory)
+- Keep campaigns self-contained (all assets in `assets/` directory)
 - Maintain existing SDK integration points
 - Follow frontmatter conventions
 - Update `_data/campaigns.json` when adding campaigns
