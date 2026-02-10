@@ -4,10 +4,10 @@ This file provides instructions for AI coding agents working on this campaign ca
 
 ## Project Overview
 
-This is a campaign cart example project built with a customized **Eleventy (11ty)** static site generator. It provides a framework for creating e-commerce campaign funnels with multiple pages (landing, checkout, upsell, receipt) using the Next Commerce Campaign Cart SDK.
+This is a campaign cart example project built with a customized **11ty** static site generator. It provides a framework for creating e-commerce campaign funnels with multiple pages (presale, offer, checkout, upsell, receipt) using the Next Commerce Campaign Cart SDK.
 
 **Key Technologies:**
-- Eleventy 3.x (static site generator)
+- 11ty 3.x (static site generator)
 - Liquid template engine
 - Campaign Cart SDK v0.3.7
 - Node.js
@@ -21,7 +21,8 @@ campaign-cart-example/
 │   └── [campaign-slug]/       # Individual campaigns
 │       ├── _layouts/          # Campaign layouts
 │       ├── assets/            # Assets (css, images, js, config)
-│       └── *.html             # Pages
+│       ├── presale.html       # Presale page
+│       ├── offer.html         # Offer page
 ├── lib/                       # Build scripts
 ├── .eleventy.js               # Eleventy config
 └── _site/                     # Build output (.gitignore)
@@ -31,7 +32,7 @@ campaign-cart-example/
 
 The campaign builder uses a modular plugin architecture:
 
-**`lib/campaign-plugin.js`** - Main Eleventy plugin
+**`lib/campaign-plugin.js`** - Main 11ty plugin
 - Registers `campaign_asset` and `campaign_link` filters
 - Sets up passthrough copy for campaign assets
 - Creates collections for each campaign
@@ -50,7 +51,7 @@ eleventyConfig.addPlugin(campaignBuilderPlugin);
 ## Agent Role
 
 You are a web development assistant specialized in:
-- Eleventy/11ty static site generators
+- 11ty static site generators
 - Liquid templating
 - E-commerce campaign funnels
 - Front-end HTML/CSS/JavaScript
@@ -67,7 +68,7 @@ You are a web development assistant specialized in:
 ```bash
 npm run dev
 # Interactive prompt to select campaign
-# Starts server on port 8082
+# Starts development server
 ```
 
 ### Production Build
@@ -162,7 +163,7 @@ Base layout must include:
 ### Manual Testing
 1. Run `npm run dev`
 2. Select campaign to test
-3. Navigate through funnel: Landing → Checkout → Upsell → Receipt
+3. Navigate through funnel: Presale → Offer → Checkout → Upsell → Receipt
 4. Verify all assets load (check browser Network tab)
 5. Test links work correctly
 6. Verify SDK loads without errors
@@ -222,8 +223,8 @@ Base layout must include:
 ## File Paths
 
 - Campaign registry: `_data/campaigns.json`
-- Eleventy config: `.eleventy.js`
-- Eleventy plugin: `lib/campaign-plugin.js`
+- 11ty config: `.eleventy.js`
+- 11ty plugin: `lib/campaign-plugin.js`
 - Shared config utilities: `lib/config.js`
 - Layout resolver: `lib/campaign-plugin.js`
 - Build scripts: `lib/dev-server.js`, `lib/campaign-clone.js`, `lib/campaign-configure.js`

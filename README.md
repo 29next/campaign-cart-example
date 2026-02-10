@@ -21,7 +21,7 @@ npm run start
 This will:
 1. Show a list of available campaigns
 2. Let you select which campaign to preview
-3. Start the Eleventy start server on port 8082
+3. Start the 11ty development server
 4. Open your browser to the selected campaign
 
 ### Build
@@ -71,17 +71,18 @@ campaign-cart-example/
 │       │   ├── images/         # Campaign images
 │       │   ├── js/             # Campaign scripts
 │       │   └── config.js       # SDK configuration
-│       ├── landing.html        # Landing page
+│       ├── presale.html        # Presale page (Base URL)
+│       ├── offer.html          # Offer page
 │       ├── checkout.html       # Checkout page
 │       ├── upsell.html         # Upsell page
 │       └── receipt.html        # Receipt page
 ├── lib/
-│   ├── campaign-plugin.js      # Eleventy plugin (filters)
+│   ├── campaign-plugin.js      # 11ty plugin (filters)
 │   ├── config.js               # Shared configuration utilities
 │   ├── dev-server.js           # Development server launcher
 │   ├── campaign-clone.js
 │   └── campaign-configure.js   # API key configuration tool
-├── .eleventy.js                # Eleventy config (with campaign plugin)
+├── .eleventy.js                # 11ty config (with campaign plugin)
 └── package.json
 ```
 
@@ -107,10 +108,10 @@ page_type: checkout
 next_success_url: upsell.html
 styles:
   - https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css
-  - css/landing.css
+  - css/offer.css
 scripts:
   - https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js
-  - js/landing.js
+  - js/offer.js
 footer: true
 ---
 ```
@@ -177,7 +178,7 @@ Layouts are automatically resolved to the campaign's `_layouts/` directory:
 
 ## Template Tags (Filters)
 
-Campaign Cart Example provides custom Eleventy filters for campaign-agnostic paths.
+Campaign Cart Example provides custom 11ty filters for campaign-agnostic paths.
 
 ### `campaign_asset`
 
