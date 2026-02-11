@@ -48,6 +48,10 @@ This interactive tool will:
 3. Prompt for API key
 4. Update the campaign's `config.js` file
 
+> [!IMPORTANT]
+> Get your Campaign API key from Campaigns App in your store. See [Campaigns App Guide](https://docs.next-commerce.com/campaigns-app/introduction).
+
+
 ### Clone Campaign
 
 Clone an existing campaign to create a new one:
@@ -72,10 +76,10 @@ campaign-cart-example/
 │       │   ├── js/             # Campaign scripts
 │       │   └── config.js       # SDK configuration
 │       ├── presale.html        # Presale page (Base URL)
-│       ├── offer.html          # Offer page
 │       ├── checkout.html       # Checkout page
 │       ├── upsell.html         # Upsell page
-│       └── receipt.html        # Receipt page
+│       ├── receipt.html        # Receipt page
+│       └── *.html              # Any other page
 ├── lib/
 │   ├── campaign-plugin.js      # 11ty plugin (filters)
 │   ├── config.js               # Shared configuration utilities
