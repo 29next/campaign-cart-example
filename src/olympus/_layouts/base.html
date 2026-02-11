@@ -42,6 +42,14 @@
   <link href="{{ style | campaign_asset }}" rel="stylesheet" type="text/css">
   {% endfor %}
 
+  {% for vendor_style in vendor_styles %}
+  <link href="{{ vendor_style }}" rel="stylesheet" type="text/css">
+  {% endfor %}
+
+  {% for vendor_script in vendor_scripts %}
+  <script src="{{ vendor_script }}"></script>
+  {% endfor %}
+
   <link href="{{ 'images/favicon.png' | campaign_asset }}" rel="shortcut icon" type="image/x-icon">
   <link href="{{ 'images/webclip.png' | campaign_asset }}" rel="apple-touch-icon">
 
