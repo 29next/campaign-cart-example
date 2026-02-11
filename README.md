@@ -240,6 +240,28 @@ Generates clean URLs for inter-page navigation.
 
 **Use for:** Page links, navigation URLs, redirect URLs, Campaign Cart SDK meta tags.
 
+---
+
+### `campaign_include`
+
+Includes a file relative to the current campaign's `_includes` directory. This is useful for including reusable components that are specific to a campaign.
+
+**Syntax:**
+```liquid
+{% campaign_include 'filename.html' arg=value %}
+```
+
+**Examples:**
+```liquid
+<!-- Include a slider component -->
+{% campaign_include 'slider.html' images=page.slider_images %}
+
+<!-- Include with parameters -->
+{% campaign_include 'slider.html' images=page.slider_images show_package_image=true %}
+```
+
+**Use for:** Reusable components within a campaign (e.g., sliders, testimonials).
+
 ## Connecting to Campaigns App
 
 To connect this campaign to your 29 Next Campaigns App:

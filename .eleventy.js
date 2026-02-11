@@ -5,6 +5,7 @@ module.exports = function (eleventyConfig) {
     // Ignore README.md and _layouts directories from being processed/copied
     eleventyConfig.ignores.add("README.md");
     eleventyConfig.ignores.add("**/_layouts/**");
+    eleventyConfig.ignores.add("**/_includes/**");
 
     // Add campaign builder plugin
     eleventyConfig.addPlugin(campaignPlugin);

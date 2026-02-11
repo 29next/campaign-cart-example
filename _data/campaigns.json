@@ -1,7 +1,7 @@
 {
   "campaigns": [
     {
-      "name": "Starter",
+      "name": "Olympus starter campaign",
       "slug": "olympus",
       "description": "Olympus funnel",
       "sdk_version": "0.3.7"
