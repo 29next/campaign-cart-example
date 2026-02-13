@@ -10,6 +10,11 @@ module.exports = function (eleventyConfig) {
     // Add campaign builder plugin
     eleventyConfig.addPlugin(campaignPlugin);
 
+    // Force full page reload on changes
+    eleventyConfig.setServerOptions({
+        domDiff: false
+    });
+
     return {
         dir: {
             input: "src",
