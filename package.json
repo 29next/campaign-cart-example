@@ -3,29 +3,15 @@
   "version": "1.0.0",
   "description": "Example Campaign using Campaign Cart SDK",
   "scripts": {
-    "dev": "node lib/dev-server.js",
-    "clone": "node lib/campaign-clone.js",
-    "config": "node lib/campaign-configure.js",
-    "start": "node lib/dev-server.js",
-    "build": "npx eleventy"
+    "init": "campaign-init",
+    "start": "campaign-dev",
+    "dev": "campaign-dev",
+    "clone": "campaign-clone",
+    "config": "campaign-config",
+    "build": "eleventy"
   },
-  "keywords": [
-    "next-commerce",
-    "campaign",
-    "checkout"
-  ],
-  "author": "Next Commerce",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/29next/campaign-cart-example.git"
-  },
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/29next/campaign-cart-example/issues"
-  },
-  "homepage": "https://github.com/29next/campaign-cart-example#readme",
   "dependencies": {
+    "next-campaign-page-kit": "github:NextCommerceCo/next-campaign-page-kit",
     "@11ty/eleventy": "^3.1.2"
   }
 }

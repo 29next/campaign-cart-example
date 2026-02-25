@@ -49,7 +49,7 @@ This interactive tool will:
 4. Update the campaign's `config.js` file
 
 > [!IMPORTANT]
-> Get your Campaign API key from Campaigns App in your store. See [Campaigns App Guide](https://docs.next-commerce.com/campaigns-app/introduction).
+> Get your Campaign API key from Campaigns App in your store. See [Campaigns App Guide](https://developers.nextcommerce.com/docs/campaigns/).
 
 
 ### Clone Campaign
