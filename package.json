@@ -3,15 +3,17 @@
   "version": "1.0.0",
   "description": "Example Campaign using Campaign Cart SDK",
   "scripts": {
-    "init": "campaign-init",
+    "setup": "campaign-init",
     "start": "campaign-dev",
     "dev": "campaign-dev",
     "clone": "campaign-clone",
     "config": "campaign-config",
-    "build": "eleventy"
+    "build": "eleventy",
+    "compress": "campaign-compress",
+    "compress:preview": "campaign-compress --preview"
   },
   "dependencies": {
-    "next-campaign-page-kit": "^0.0.1",
-    "@11ty/eleventy": "^3.1.2"
+    "@11ty/eleventy": "^3.1.2",
+    "next-campaign-page-kit": "^0.0.3"
   }
 }
