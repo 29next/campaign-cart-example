@@ -13,6 +13,6 @@
     "compress:preview": "campaign-compress --preview"
   },
   "dependencies": {
-    "next-campaign-page-kit": "^0.0.3"
+    "next-campaign-page-kit": "^0.0.6"
   }
 }
