@@ -1,6 +1,6 @@
 # Next Commerce Campaign Example
 
-Next Commerce campaign using the Campaign Cart SDK. This example uses [next-campaign-page-kit](https://github.com/29next/next-campaign-page-kit) for local development and page building with Liquid templating.
+Next Commerce campaign using the Campaign Cart SDK. This example uses [next-campaign-page-kit](https://github.com/nextcommerceco/campaign-page-kit) for local development and page building with Liquid templating.
 
 ## Setup
 
