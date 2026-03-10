@@ -141,18 +141,15 @@ You can access any key defined in your campaign's entry in `_data/campaigns.json
 
 ### Adding Custom Context
 
-To add more context, simply add new keys to your campaign in `_data/campaigns.json`:
+To add more context, simply add new keys to your campaign in `_data/campaigns.json`. Each entry is keyed by the campaign slug, which must match the campaign's directory name under `src/`.
 
 ```json
 {
-  "campaigns": [
-    {
-      "slug": "starter",
-      "name": "Starter Campaign",
-      "support_email": "support@example.com",
-      "custom_headline": "Welcome to our Store!"
-    }
-  ]
+  "starter": {
+    "name": "Starter Campaign",
+    "support_email": "support@example.com",
+    "custom_headline": "Welcome to our Store!"
+  }
 }
 ```
 
