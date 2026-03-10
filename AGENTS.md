@@ -4,10 +4,10 @@ This file provides instructions for AI coding agents working on this campaign ca
 
 ## Project Overview
 
-This is a campaign cart example project built with a customized **11ty** static site generator. It provides a framework for creating e-commerce campaign funnels with multiple pages (presale, offer, checkout, upsell, receipt) using the Next Commerce Campaign Cart SDK.
+This is a campaign cart example project built with **next-campaign-page-kit**, a custom static site generator. It provides a framework for creating e-commerce campaign funnels with multiple pages (presale, offer, checkout, upsell, receipt) using the Next Commerce Campaign Cart SDK.
 
 **Key Technologies:**
-- 11ty 3.x (static site generator)
+- next-campaign-page-kit (static site generator)
 - Liquid template engine
 - Campaign Cart SDK v0.3.7
 - Node.js
@@ -20,38 +20,17 @@ campaign-cart-example/
 ├── src/
 │   └── [campaign-slug]/       # Individual campaigns
 │       ├── _layouts/          # Campaign layouts
+│       ├── _includes/         # Reusable components
 │       ├── assets/            # Assets (css, images, js, config)
 │       ├── presale.html       # Presale page
 │       ├── offer.html         # Offer page
-├── lib/                       # Build scripts
-├── .eleventy.js               # Eleventy config
 └── _site/                     # Build output (.gitignore)
-```
-
-## Plugin Architecture
-
-The campaign builder uses a modular plugin architecture:
-
-**`lib/campaign-plugin.js`** - Main 11ty plugin
-- Registers `campaign_asset` and `campaign_link` filters
-- Sets up passthrough copy for campaign assets
-- Creates collections for each campaign
-
-**`lib/config.js`** - Shared configuration module
-- Path resolution utilities (`getCampaignsPath`, `getSrcPath`, `getOutputPath`)
-- Campaign data loaders (`loadCampaigns`, `saveCampaigns`)
-- Used by all CLI tools for consistent path handling
-
-**`.eleventy.js`** - Minimal configuration
-```javascript
-const campaignBuilderPlugin = require('./lib/campaign-plugin');
-eleventyConfig.addPlugin(campaignBuilderPlugin);
 ```
 
 ## Agent Role
 
 You are a web development assistant specialized in:
-- 11ty static site generators
+- next-campaign-page-kit static site generator
 - Liquid templating
 - E-commerce campaign funnels
 - Front-end HTML/CSS/JavaScript
@@ -66,7 +45,7 @@ You are a web development assistant specialized in:
 
 ### Development
 ```bash
-npm run dev
+npm run start
 # Interactive prompt to select campaign
 # Starts development server
 ```
@@ -109,6 +88,11 @@ npm run config        # Configure API key
    <a href="{{ 'upsell.html' | campaign_link }}">Continue</a>
    ```
 
+3. **`campaign_include`** - For reusable campaign components
+   ```liquid
+   {% campaign_include 'slider.html' images=page.slider_images %}
+   ```
+
 ### Frontmatter Conventions
 
 Pages use YAML frontmatter:
@@ -130,7 +114,7 @@ footer: true               # Optional
 ### Layout Resolution
 
 - **DO NOT** hardcode campaign paths in layouts
-- Layouts are auto-resolved via `lib/campaign-plugin.js`
+- Layouts are auto-resolved by next-campaign-page-kit
 - Format: `page_layout: base.html` → resolves to `{campaign}/_layouts/base.html`
 
 ## Campaign SDK Integration
@@ -161,7 +145,7 @@ Base layout must include:
 ## Testing
 
 ### Manual Testing
-1. Run `npm run dev`
+1. Run `npm run start`
 2. Select campaign to test
 3. Navigate through funnel: Presale → Offer → Checkout → Upsell → Receipt
 4. Verify all assets load (check browser Network tab)
@@ -179,7 +163,7 @@ Base layout must include:
 ## Boundaries
 
 ### Always Do
-- Use `campaign_asset` and `campaign_link` filters
+- Use `campaign_asset`, `campaign_link`, and `campaign_include` filters
 - Keep campaigns self-contained (all assets in `assets/` directory)
 - Maintain existing SDK integration points
 - Follow frontmatter conventions
@@ -187,9 +171,6 @@ Base layout must include:
 
 ### Ask First
 - Changing Campaign Cart SDK version
-- Modifying `lib/campaign-plugin.js` (layout resolution logic)
-- Changing `.eleventy.js` configuration
-- Altering `config.js` structure significantly
 - Adding new npm dependencies
 
 ### Never Do
@@ -206,7 +187,7 @@ Base layout must include:
 1. Create `src/{campaign}/newpage.html`
 2. Add frontmatter with `page_layout`, `title`, etc.
 3. Use filters: `campaign_asset`, `campaign_link`
-4. Test with `npm run dev`
+4. Test with `npm run start`
 
 ### Cloning a Campaign
 1. Run `npm run clone`
@@ -223,12 +204,8 @@ Base layout must include:
 ## File Paths
 
 - Campaign registry: `_data/campaigns.json`
-- 11ty config: `.eleventy.js`
-- 11ty plugin: `lib/campaign-plugin.js`
-- Shared config utilities: `lib/config.js`
-- Layout resolver: `lib/campaign-plugin.js`
-- Build scripts: `lib/dev-server.js`, `lib/campaign-clone.js`, `lib/campaign-configure.js`
 - Campaign files: `src/{campaign-slug}/`
+- Build scripts: provided by `next-campaign-page-kit`
 
 ## Error Handling
 
@@ -236,7 +213,6 @@ Common errors and solutions:
 
 **"Layout does not exist"**
 - Check `page_layout:` in frontmatter matches file in `_layouts/`
-- Ensure plugin is correctly loaded in `.eleventy.js`
 
 **"Cannot find module"**
 - Run `npm install`
@@ -245,7 +221,6 @@ Common errors and solutions:
 **Assets not loading (404)**
 - Verify using `campaign_asset` filter
 - Check file exists in `src/{campaign}/` directory
-- Ensure passthrough copy in `.eleventy.js`
 
 **Links broken**
 - Use `campaign_link` filter for all page URLs
@@ -254,5 +229,5 @@ Common errors and solutions:
 ## Additional Resources
 
 - [Campaign Cart SDK Docs](https://docs.29next.com/apps/campaigns-app)
-- [Eleventy Documentation](https://www.11ty.dev/docs/)
+- [next-campaign-page-kit](https://github.com/29next/next-campaign-page-kit)
 - [Liquid Template Language](https://liquidjs.com/)

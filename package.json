@@ -10,9 +10,10 @@
     "config": "campaign-config",
     "build": "campaign-build",
     "compress": "campaign-compress",
-    "compress:preview": "campaign-compress --preview"
+    "compress:preview": "campaign-compress --preview",
+    "migrate": "campaign-migrate"
   },
   "dependencies": {
-    "next-campaign-page-kit": "^0.0.6"
+    "next-campaign-page-kit": "^0.0.7"
   }
 }
