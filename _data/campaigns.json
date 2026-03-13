@@ -2,7 +2,7 @@
   "olympus": {
     "name": "Olympus starter campaign",
     "description": "Olympus funnel",
-    "sdk_version": "0.3.7",
+    "sdk_version": "0.3.11",
     "phone_intl": "+18888316810",
     "phone_pretty": "1 (888) 831-6810"
   }
