@@ -1,4 +1,6 @@
-# Next Commerce Campaign Example
+# [ARCHIVED] Next Commerce Campaign Example
+
+> **This repository has been archived.** Please visit [campaign-cart-starter-templates](https://github.com/NextCommerceCo/campaign-cart-starter-templates) for the latest starter templates.
 
 Next Commerce campaign using the Campaign Cart SDK with customized 11ty static site generator tailored for campaign flows.
 
