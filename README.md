@@ -2,7 +2,7 @@
 
 > **This repository has been archived.** Please visit [campaign-cart-starter-templates](https://github.com/NextCommerceCo/campaign-cart-starter-templates) for the latest starter templates.
 
-Next Commerce campaign using the Campaign Cart SDK with customized 11ty static site generator tailored for campaign flows.
+Next Commerce campaign using the Campaign Cart SDK. This example uses [next-campaign-page-kit](https://github.com/nextcommerceco/campaign-page-kit) for local development and page building with Liquid templating.
 
 ## Setup
 
@@ -23,7 +23,7 @@ npm run start
 This will:
 1. Show a list of available campaigns
 2. Let you select which campaign to preview
-3. Start the 11ty development server
+3. Start the development server
 4. Open your browser to the selected campaign
 
 ### Build
@@ -82,13 +82,6 @@ campaign-cart-example/
 │       ├── upsell.html         # Upsell page
 │       ├── receipt.html        # Receipt page
 │       └── *.html              # Any other page
-├── lib/
-│   ├── campaign-plugin.js      # 11ty plugin (filters)
-│   ├── config.js               # Shared configuration utilities
-│   ├── dev-server.js           # Development server launcher
-│   ├── campaign-clone.js
-│   └── campaign-configure.js   # API key configuration tool
-├── .eleventy.js                # 11ty config (with campaign plugin)
 └── package.json
 ```
 
@@ -97,8 +90,6 @@ campaign-cart-example/
 - **`_data/campaigns.json`** - Register all campaigns and their configuration data here
 - **`src/[campaign]/_layouts/base.html`** - Campaign's base layout
 - **`src/[campaign]/config.js`** - Campaign Cart SDK configuration
-- **`lib/campaign-plugin.js`** - Campaign plugin with filters
-- **`lib/config.js`** - Shared configuration and path utilities
 
 ## Page Frontmatter
 
@@ -152,18 +143,15 @@ You can access any key defined in your campaign's entry in `_data/campaigns.json
 
 ### Adding Custom Context
 
-To add more context, simply add new keys to your campaign in `_data/campaigns.json`:
+To add more context, simply add new keys to your campaign in `_data/campaigns.json`. Each entry is keyed by the campaign slug, which must match the campaign's directory name under `src/`.
 
 ```json
 {
-  "campaigns": [
-    {
-      "slug": "starter",
-      "name": "Starter Campaign",
-      "support_email": "support@example.com",
-      "custom_headline": "Welcome to our Store!"
-    }
-  ]
+  "starter": {
+    "name": "Starter Campaign",
+    "support_email": "support@example.com",
+    "custom_headline": "Welcome to our Store!"
+  }
 }
 ```
 
@@ -182,9 +170,9 @@ Layouts are automatically resolved to the campaign's `_layouts/` directory:
 
 **No layout specified?** Defaults to `base.html`.
 
-## Template Tags (Filters)
+## Template Filters
 
-Campaign Cart Example provides custom 11ty filters for campaign-agnostic paths.
+The following Liquid template filters are available for campaign-agnostic paths.
 
 ### `campaign_asset`
 

@@ -12,6 +12,7 @@ window.nextConfig = {
     }
   },
   addressConfig: {
+    enableAutocomplete: true,
     defaultCountry: "US",
     showCountries: ["US", "CA", "GB", "BR", "AU", "DE", "FR", "IT", "ES", "NL"],
     dontShowStates: ["AS", "GU", "PR", "VI"]
@@ -27,11 +28,7 @@ window.nextConfig = {
       combinable: true
     }
   },
-  googleMaps: {
-    apiKey: "AIzaSyBmrv1QRE41P9FhFOTwUhRMGg6LcFH1ehs",
-    region: "US",
-    enableAutocomplete: true
-  },
+  googleMaps: {},
   tracking: "auto",
   analytics: {
     enabled: true,
